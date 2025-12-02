@@ -137,26 +137,26 @@ namespace Assignment
 
             #region 1. Find the unique Category names from Product List.
 
-            var Result = ListGenerator.ProductList.Select(P => P.Category).Distinct();
-               
-            foreach (var item in Result)
-            {
-                Console.WriteLine(item);
-            }
-
-            #endregion
-
-            #region 2. Produce a Sequence containing the unique first letter from both product and customer names.
-
-            //var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
-            //var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
-
-            //var Result = Seq01.Union(Seq02).Distinct();
+            //var Result = ListGenerator.ProductList.Select(P => P.Category).Distinct();
 
             //foreach (var item in Result)
             //{
             //    Console.WriteLine(item);
             //}
+
+            #endregion
+
+            #region 2. Produce a Sequence containing the unique first letter from both product and customer names.
+
+            var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
+            var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
+
+            var Result = Seq01.Union(Seq02).Distinct();
+              
+            foreach (var item in Result)
+            {
+                Console.WriteLine(item);
+            }
 
             #endregion
 
