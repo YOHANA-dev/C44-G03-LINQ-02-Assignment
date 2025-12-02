@@ -148,29 +148,29 @@ namespace Assignment
 
             #region 2. Produce a Sequence containing the unique first letter from both product and customer names.
 
-            var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
-            var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
-
-            var Result = Seq01.Union(Seq02).Distinct();
-              
-            foreach (var item in Result)
-            {
-                Console.WriteLine(item);
-            }
-
-            #endregion
-
-            #region 3. Create one sequence that contains the common first letter from both product and customer names.
-
             //var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
             //var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
 
-            //var Result = Seq01.Intersect(Seq02);
+            //var Result = Seq01.Union(Seq02).Distinct();
 
             //foreach (var item in Result)
             //{
             //    Console.WriteLine(item);
             //}
+
+            #endregion
+
+            #region 3. Create one sequence that contains the common first letter from both product and customer names.
+
+            var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
+             var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
+              
+            var Result = Seq01.Intersect(Seq02);
+                 
+            foreach (var item in Result)
+            {
+                Console.WriteLine(item);
+            }
 
             #endregion
 
