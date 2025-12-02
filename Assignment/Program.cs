@@ -86,39 +86,48 @@ namespace Assignment
 
             #region 5. Get the products with the most expensive price in each category.
 
-            var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Select(P => new
-            {
-                Category = P.Key,
-                MostExpensivePrice = (from Q in P
-                                      let MaxPrice = P.Max(R => R.UnitPrice)
-                                      where Q.UnitPrice == MaxPrice
-                                      select Q)
-            });
-             
+            //var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Select(P => new
+            //{
+            //    Category = P.Key,
+            //    MostExpensivePrice = (from Q in P
+            //                          let MaxPrice = P.Max(R => R.UnitPrice)
+            //                          where Q.UnitPrice == MaxPrice
+            //                          select Q)
+            //});
 
-            foreach (var item in Result)
-            {
-                Console.WriteLine($"Category: {item.Category}");
-                foreach (var product in item.MostExpensivePrice)
-                {
-                    Console.WriteLine($"\tProduct: {product.ProductName}, Price: {product.UnitPrice}");
-                }
-            }
+
+            //foreach (var item in Result)
+            //{
+            //    Console.WriteLine($"Category: {item.Category}");
+            //    foreach (var product in item.MostExpensivePrice)
+            //    {
+            //        Console.WriteLine($"\tProduct: {product.ProductName}, Price: {product.UnitPrice}");
+            //    }
+            //}
 
             #endregion
 
             #region 6. Get the average price of each category's products.
 
-            //var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Select(P => new
-            //{
-            //    Category = P.Key,
-            //    AveragePrice = P.Average(Q => Q.UnitPrice)
-            //});
+            var categoryAverages = ListGenerator.ProductList
+                .GroupBy(product => product.Category)
+                  .Select(group =>
+                {
+                    var avgPrice = group.Sum(p => p.UnitPrice) / group.Count(); // حساب المتوسط يدويًا
+                    return new
+                    {
+                        CategoryName = group.Key,
+                        AveragePrice = avgPrice
+                    };
+                });
 
-            //foreach (var item in Result)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var cat in categoryAverages)
+            {
+                Console.WriteLine($"Category: {cat.CategoryName}, Average Price: {cat.AveragePrice:F2}");
+            }
+
+            #endregion
+
 
             #endregion
 
