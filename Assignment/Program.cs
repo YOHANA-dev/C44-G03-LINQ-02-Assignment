@@ -190,15 +190,15 @@ namespace Assignment
 
             #region 5. Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates.
 
-            var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName.Length >= 3 ? P.ProductName[^3..] : P.ProductName);
-            var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName.Length >= 3 ? C.CustomerName[^3..] : C.CustomerName);
-              
-            var Result = Seq01.Concat(Seq02);
-             
-            foreach (var item in Result)
-            {
-                Console.WriteLine(item);
-            }
+            //var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName.Length >= 3 ? P.ProductName[^3..] : P.ProductName);
+            //var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName.Length >= 3 ? C.CustomerName[^3..] : C.CustomerName);
+
+            //var Result = Seq01.Concat(Seq02);
+
+            //foreach (var item in Result)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
             #endregion
 
@@ -210,7 +210,7 @@ namespace Assignment
 
             //var Result = ListGenerator.CustomerList.Where(C => C.City == "Washington").SelectMany(C => C.Orders).Take(3);
             //// Washington has 0 customers in the provided data.
-            //// So, I chose London instead
+            //// So, I   chose London instead
 
             //Result = ListGenerator.CustomerList.Where(C => C.City == "London").SelectMany(C => C.Orders).Take(3);
 
@@ -242,9 +242,9 @@ namespace Assignment
 
             //var Result = numbers.TakeWhile((N, I) => I < N);
 
-            //foreach (var item in Result)
+            //  foreach (var item in Result)  
             //{
-            //    Console.WriteLine(item);
+            //     Console.WriteLine(item);
             //}
 
             #endregion
@@ -256,9 +256,9 @@ namespace Assignment
             //var Result = numbers.SkipWhile(N => N % 3 != 0);
 
             //foreach (var item in Result)
-            //{
+            //{    
             //    Console.WriteLine(item);
-            //}
+            //} 
 
             #endregion
 
@@ -269,7 +269,7 @@ namespace Assignment
             //var Result = numbers.SkipWhile((N, I) => I < N);
 
             //foreach (var item in Result)
-            //{
+            //{ 
             //    Console.WriteLine(item);
             //}
 
@@ -292,7 +292,7 @@ namespace Assignment
             //var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Where(C => C.Any(P => P.UnitsInStock == 0));
 
             //foreach (var group in Result)
-            //{
+            //{ 
             //    Console.WriteLine($"Category: {group.Key}");
             //    foreach (var product in group)
             //    {
@@ -309,10 +309,10 @@ namespace Assignment
             //foreach (var group in Result)
             //{
             //    Console.WriteLine($"Category: {group.Key}");
-            //    foreach (var product in group)
+            //      foreach (var product in group)
             //    {
-            //        Console.WriteLine($"\tProduct: {product.ProductName}, UnitsInStock: {product.UnitsInStock}");
-            //    }
+            //          Console.WriteLine($"\tProduct: {product.ProductName}, UnitsInStock: {product.UnitsInStock}");
+            //    }   
             //}
 
             #endregion
@@ -335,14 +335,14 @@ namespace Assignment
             //        Console.WriteLine($"\t{number}");
             //    }
             //}
-
+                
             #endregion
 
             #region 2. Uses group by to partition a list of words by their first letter. Use dictionary_english.txt for Input.
 
             //var Result = ListGenerator.DictionaryEnglish.GroupBy(W => W[0]);
 
-            //foreach (var group in Result)
+            //foreach (var group in Result)  
             //{
             //    Console.WriteLine($"Words that start with the letter '{group.Key}':");
             //    foreach (var word in group)
@@ -360,7 +360,7 @@ namespace Assignment
             //var Result = Arr.GroupBy(W => new string(W.OrderBy(C => C).ToArray()));
 
             //foreach (var group in Result)
-            //{
+            //{  
             //    foreach (var word in group)
             //    {
             //        Console.WriteLine($"{word}");
