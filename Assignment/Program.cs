@@ -30,7 +30,7 @@ namespace Assignment
 
             var result = ListGenerator.ProductList
                 .GroupBy(p => p.Category)
-                .Select(g => g.OrderBy(p => p.UnitPrice).First()); // نجيب المنتج الأرخص في كل فئة
+                .Select(g => g.OrderBy(p => p.UnitPrice).First()); 
              
             foreach (var product in result)
             {
@@ -41,27 +41,28 @@ namespace Assignment
             #endregion
             #region 3. Get cheapest products per category (refactored)
 
-            //var cheapestPerCategory = ListGenerator.ProductList
-            //    .GroupBy(item => item.Category)
-            //    .Select(group =>
-            //    {
-            //        decimal minPrice = group.Min(p => p.UnitPrice); // أقل سعر في الفئة
-            //        var cheapestProducts = group.Where(p => p.UnitPrice == minPrice).ToList();
-            //        return new
-            //        {
-            //            CategoryName = group.Key,
-            //            Products = cheapestProducts
-            //        };
-            //    });
+            var cheapestPerCategory = ListGenerator.ProductList
+                .GroupBy(item => item.Category)
+                .Select(group =>
+                { 
 
-            //foreach (var category in cheapestPerCategory)
-            //{
-            //    Console.WriteLine($"Category: {category.CategoryName}");
-            //    foreach (var product in category.Products)
-            //    {
-            //        Console.WriteLine($"\t{product.ProductName} - ${product.UnitPrice}");
-            //    }
-            //}
+                    decimal minPrice = group.Min(p => p.UnitPrice); // أقل سعر في الفئة
+                    var cheapestProducts = group.Where(p => p.UnitPrice == minPrice).ToList();
+                    return new
+                    {
+                        CategoryName = group.Key,
+                        Products = cheapestProducts
+                    };
+                });
+
+            foreach (var category in cheapestPerCategory)
+            {
+                Console.WriteLine($"Category: {category.CategoryName}");
+                foreach (var product in category.Products)
+                {
+                    Console.WriteLine($"\t{product.ProductName} - ${product.UnitPrice}");
+                }
+            }
 
             #endregion
 
