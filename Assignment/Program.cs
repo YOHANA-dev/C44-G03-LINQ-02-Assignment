@@ -109,40 +109,40 @@ namespace Assignment
 
             #region 6. Get the average price of each category's products.
 
-            var categoryAverages = ListGenerator.ProductList
-                .GroupBy(product => product.Category)
-                  .Select(group =>
-                {
-                    var avgPrice = group.Sum(p => p.UnitPrice) / group.Count(); // حساب المتوسط يدويًا
-                    return new
-                    {
-                        CategoryName = group.Key,
-                        AveragePrice = avgPrice
-                    };
-                });
+            //var categoryAverages = ListGenerator.ProductList
+            //    .GroupBy(product => product.Category)
+            //      .Select(group =>
+            //    {
+            //        var avgPrice = group.Sum(p => p.UnitPrice) / group.Count(); // حساب المتوسط يدويًا
+            //        return new
+            //        {
+            //            CategoryName = group.Key,
+            //            AveragePrice = avgPrice
+            //        };
+            //    });
 
-            foreach (var cat in categoryAverages)
-            {
-                Console.WriteLine($"Category: {cat.CategoryName}, Average Price: {cat.AveragePrice:F2}");
-            }
-
-            #endregion
-
+            //foreach (var cat in categoryAverages)
+            //{
+            //    Console.WriteLine($"Category: {cat.CategoryName}, Average Price: {cat.AveragePrice:F2}");
+            //}
 
             #endregion
 
+
             #endregion
+
+#endregion
 
             #region LINQ - Set Operators
 
             #region 1. Find the unique Category names from Product List.
 
-            //var Result = ListGenerator.ProductList.Select(P => P.Category).Distinct();
-
-            //foreach (var item in Result)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            var Result = ListGenerator.ProductList.Select(P => P.Category).Distinct();
+               
+            foreach (var item in Result)
+            {
+                Console.WriteLine(item);
+            }
 
             #endregion
 
