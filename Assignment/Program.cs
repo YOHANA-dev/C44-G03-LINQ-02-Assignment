@@ -28,14 +28,15 @@ namespace Assignment
             #endregion
             #region 2. Get the cheapest product in each category
 
-            //var result = ListGenerator.ProductList
-            //    .GroupBy(p => p.Category)
-            //    .Select(g => g.OrderBy(p => p.UnitPrice).First()); // نجيب المنتج الأرخص في كل فئة
+            var result = ListGenerator.ProductList
+                .GroupBy(p => p.Category)
+                .Select(g => g.OrderBy(p => p.UnitPrice).First()); // نجيب المنتج الأرخص في كل فئة
+             
+            foreach (var product in result)
+            {
 
-            //foreach (var product in result)
-            //{
-            //    Console.WriteLine($"Category: {product.Category}, Product: {product.ProductName}, Price: {product.UnitPrice}");
-            //}
+                 Console.WriteLine($"Category: {product.Category}, Product: {product.ProductName}, Price: {product.UnitPrice}");
+            }
 
             #endregion
             #region 3. Get cheapest products per category (refactored)
