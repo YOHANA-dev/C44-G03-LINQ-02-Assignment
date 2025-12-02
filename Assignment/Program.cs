@@ -12,95 +12,98 @@ namespace Assignment
             #region LINQ - Aggregate Operators
             #region 1. Get the total units in stock for each product category.
 
-            var groupedResult = ListGenerator.ProductList
-                .GroupBy(item => item.Category)
-                .Select(group => new
-                {
-                    CategoryName = group.Key,
-                    StockCount = group.Sum(p => p.UnitsInStock)
-                });
+            //var groupedResult = ListGenerator.ProductList
+            //    .GroupBy(item => item.Category)
+            //    .Select(group => new
+            //    {
+            //        CategoryName = group.Key,
+            //        StockCount = group.Sum(p => p.UnitsInStock)
+            //    });
 
-            foreach (var entry in groupedResult)
-            {
-                Console.WriteLine($"{entry.CategoryName}: {entry.StockCount}");
-            }
+            //foreach (var entry in groupedResult)
+            //{
+            //    Console.WriteLine($"{entry.CategoryName}: {entry.StockCount}");
+            //}
 
             #endregion
             #region 2. Get the cheapest product in each category
 
-            var result = ListGenerator.ProductList
-                .GroupBy(p => p.Category)
-                .Select(g => g.OrderBy(p => p.UnitPrice).First()); 
-             
-            foreach (var product in result)
-            {
+            //var result = ListGenerator.ProductList
+            //    .GroupBy(p => p.Category)
+            //    .Select(g => g.OrderBy(p => p.UnitPrice).First()); 
 
-                 Console.WriteLine($"Category: {product.Category}, Product: {product.ProductName}, Price: {product.UnitPrice}");
-            }
+            //foreach (var product in result)
+            //{
+
+            //     Console.WriteLine($"Category: {product.Category}, Product: {product.ProductName}, Price: {product.UnitPrice}");
+            //}
 
             #endregion
             #region 3. Get cheapest products per category (refactored)
 
-            var cheapestPerCategory = ListGenerator.ProductList
-                .GroupBy(item => item.Category)
-                .Select(group =>
-                { 
+            //var cheapestPerCategory = ListGenerator.ProductList
+            //    .GroupBy(item => item.Category)
+            //    .Select(group =>
+            //    { 
 
-                    decimal minPrice = group.Min(p => p.UnitPrice); // أقل سعر في الفئة
-                    var cheapestProducts = group.Where(p => p.UnitPrice == minPrice).ToList();
-                    return new
-                    {
-                        CategoryName = group.Key,
-                        Products = cheapestProducts
-                    };
-                });
+            //        decimal minPrice = group.Min(p => p.UnitPrice); 
+            //        var cheapestProducts = group.Where(p => p.UnitPrice == minPrice).ToList();
+            //        return new
+            //        {
+            //            CategoryName = group.Key,
+            //            Products = cheapestProducts
+            //        };
+            //    });
 
-            foreach (var category in cheapestPerCategory)
-            {
-                Console.WriteLine($"Category: {category.CategoryName}");
-                foreach (var product in category.Products)
-                {
-                    Console.WriteLine($"\t{product.ProductName} - ${product.UnitPrice}");
-                }
-            }
+            //foreach (var category in cheapestPerCategory)
+            //{
+            //    Console.WriteLine($"Category: {category.CategoryName}");
+            //    foreach (var product in category.Products)
+            //    {
+            //        Console.WriteLine($"\t{product.ProductName} - ${product.UnitPrice}");
+            //    }
+            //}
 
             #endregion
 
 
             #region 4. Get the most expensive price among each category's products.
 
-            //var Result = ListGenerator.ProductList.GroupBy(P=> P.Category).Select(P => new
-            //{
-            //    Category = P.Key,
-            //    MostExpensivePrice = P.Max(Q => Q.UnitPrice)
-            //});
+            var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Select(P => new
+            {
+                Category = P.Key, 
 
-            //foreach (var item in Result)
-            //{
-            //    Console.WriteLine(item);
-            //}
+                MostExpensivePrice = P.Max(Q => Q.UnitPrice)
+            }); 
+
+
+            foreach (var item in Result)
+            {
+                Console.WriteLine(item);
+            }
 
             #endregion
 
             #region 5. Get the products with the most expensive price in each category.
 
-            //var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Select(P => new
-            //{
-            //    Category = P.Key,
-            //    MostExpensivePrice = (from Q in P
-            //                          let MaxPrice = P.Max(R => R.UnitPrice)
-            //                          where Q.UnitPrice == MaxPrice
-            //                          select Q)
-            //});
+            var Result = ListGenerator.ProductList.GroupBy(P => P.Category).Select(P => new
+            {
+                Category = P.Key,
+                MostExpensivePrice = (from Q in P
+                                      let MaxPrice = P.Max(R => R.UnitPrice)
+                                      where Q.UnitPrice == MaxPrice
+                                      select Q)
+            });
+             
 
-            //foreach (var item in Result)
-            //{
-            //    Console.WriteLine($"Category: {item.Category}");
-            //    foreach (var product in item.MostExpensivePrice)
-            //    {
-            //        Console.WriteLine($"\tProduct: {product.ProductName}, Price: {product.UnitPrice}");
-            //    }
-            //}
+            foreach (var item in Result)
+            {
+                Console.WriteLine($"Category: {item.Category}");
+                foreach (var product in item.MostExpensivePrice)
+                {
+                    Console.WriteLine($"\tProduct: {product.ProductName}, Price: {product.UnitPrice}");
+                }
+            }
 
             #endregion
 
