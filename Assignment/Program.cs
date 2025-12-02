@@ -176,29 +176,29 @@ namespace Assignment
 
             #region 4. Create one sequence that contains the first letters of product names that are not also first letters of customer names.
 
-             var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
-             var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
+            // var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName[0]);
+            // var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName[0]);
 
-            var Result = Seq01.Except(Seq02);
+            //var Result = Seq01.Except(Seq02);
 
-            foreach (var item in Result)
-            {   
-                Console.WriteLine(item);
-            }
+            //foreach (var item in Result)
+            //{   
+            //    Console.WriteLine(item);
+            //}
 
             #endregion
 
             #region 5. Create one sequence that contains the last Three Characters in each name of all customers and products, including any duplicates.
 
-            //var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName.Length >= 3 ? P.ProductName[^3..] : P.ProductName);
-            //var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName.Length >= 3 ? C.CustomerName[^3..] : C.CustomerName);
-
-            //var Result = Seq01.Concat(Seq02);
-
-            //foreach (var item in Result)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            var Seq01 = ListGenerator.ProductList.Select(P => P.ProductName.Length >= 3 ? P.ProductName[^3..] : P.ProductName);
+            var Seq02 = ListGenerator.CustomerList.Select(C => C.CustomerName.Length >= 3 ? C.CustomerName[^3..] : C.CustomerName);
+              
+            var Result = Seq01.Concat(Seq02);
+             
+            foreach (var item in Result)
+            {
+                Console.WriteLine(item);
+            }
 
             #endregion
 
